@@ -2,7 +2,7 @@
 # λ Parse & Play
 *A Minimal Lambda-Calculus Parser with Interactive REPL*  
 
-Semester — **[Sum25] Programming in Haskell**  
+**[Sum25] Programming in Haskell**  
 ## Authors 
 <table>
   <tr>
