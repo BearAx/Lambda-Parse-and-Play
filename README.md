@@ -3,7 +3,8 @@
 *A Minimal Lambda-Calculus Parser with Interactive REPL*  
 
 Semester — **[Sum25] Programming in Haskell**  
-Authors  |  Aleksandr Medvedev · Nikita Shankin  
+Authors  |  Aleksandr Medvedev ![My GitHub Avatar](https://github.com/BearAx.png)
+ · Nikita Shankin  
 
 ---
 
@@ -19,7 +20,7 @@ lambda calculus** enriched with
 * a tiny **call-by-value interpreter** (closures + primitive ops)
 * an ASCII **REPL** (`:quit`, `:env`) for live experimentation
 
-The entire Stage I fits in **~260 lines** of plain Haskell (no TH, no
+The entire Stage I fits in **~240 lines** of plain Haskell (no TH, no
 monad transformers, only `parsec` + `containers`).
 
 ---
