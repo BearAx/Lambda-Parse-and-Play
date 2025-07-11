@@ -26,7 +26,7 @@
 ## Table of Contents
 - [What is it?](#what-is-it)
 - [Key ideas / Why it matters](#key-ideas--why-it-matters)
-- [Stage I](#stage-i--done-)
+- [Stage I](#stage-i--done---)
 - [Road-map](#roadmap-stage-ii--beyond)
 - [Getting started](#getting-started)
 - [CHANGELOG.md](CHANGELOG.md) -- not configured yet
