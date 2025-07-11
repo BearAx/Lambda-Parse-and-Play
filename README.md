@@ -25,7 +25,7 @@
 
 ## Table of Contents
 - [What is it?](#what-is-it)
-- [Key ideas / Why it matters](#-key-ideas--why-it-matters)
+- [Key ideas / Why it matters](#key-ideas--why-it-matters)
 - [Feature Roadmap](#-feature-roadmap)
 - [Usage Guide](#-usage-guide)
 - [Key ideas / Why it mattersdt](#-key-ideas---why-it-matters)
