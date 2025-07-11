@@ -5,14 +5,22 @@
 Semester — **[Sum25] Programming in Haskell**  
 ## Authors 
 
-<p>
-  <a href="https://github.com/BearAx" target="_blank">
-    <img src="https://github.com/BearAx.png" width="60" height="60" style="border-radius: 50%;" />
-  </a>
-  <a href="https://github.com/Mysteri0K1ng" target="_blank">
-    <img src="https://github.com/Mysteri0K1ng.png" width="60" height="60" style="border-radius: 50%;" />
-  </a>
-</p>
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/BearAx">
+        <img src="https://github.com/BearAx.png" width="80" height="80" style="border-radius: 50%;" /><br />
+        <sub><b>Aleksandr Medvedev</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Mysteri0K1ng">
+        <img src="https://github.com/Mysteri0K1ng.png" width="80" height="80" style="border-radius: 50%;" /><br />
+        <sub><b>Nikita Shankin</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ---
 
