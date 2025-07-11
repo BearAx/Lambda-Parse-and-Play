@@ -23,6 +23,17 @@
 
 ---
 
+## 📌 Table of Contents
+- [What is it?](#-what-is-it)
+- [Key ideas / Why it matters](#-key-ideas--why-it-matters)
+- [Feature Roadmap](#-feature-roadmap)
+- [Usage Guide](#-usage-guide)
+- [Key ideas / Why it mattersdt](#-key-ideas---why-it-matters)
+- [CHANGELOG.md](CHANGELOG.md) -- not configured yet
+- [LICENSE](LICENSE)
+
+---
+
 ## What is it?
 
 `λ Parse & Play` is a toy-yet-practical implementation of the **untyped
@@ -37,17 +48,6 @@ lambda calculus** enriched with
 
 The entire Stage I fits in **~240 lines** of plain Haskell (no TH, no
 monad transformers, only `parsec` + `containers`).
-
----
-
-## 📌 Table of Contents
-- [About the Project](#-about-the-project)
-- [Key ideas / Why it matters](#-key-ideas--why-it-matters)
-- [Feature Roadmap](#-feature-roadmap)
-- [Usage Guide](#-usage-guide)
-- [Key ideas / Why it mattersdt](#-key-ideas---why-it-matters)
-- [CHANGELOG.md](CHANGELOG.md) -- not configured yet
-- [LICENSE](LICENSE)
 
 ---
 
