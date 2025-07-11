@@ -51,7 +51,6 @@ monad transformers, only `parsec` + `containers`).
 | REPL + commands | **✔** | `:quit`, `:env`, error handling |
 | Sample script | **✔** | `(+ 4 5)` prints `9` on start |
 | `-Wall` clean build | **✔** | no warnings after default-type fix |
-| QuickCheck round-trip test | **optional** | property included in `test/Spec.hs` |
 
 ---
 
