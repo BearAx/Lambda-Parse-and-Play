@@ -1,4 +1,4 @@
-# Changelog for `my-haskell`
+# Changelog for `Lambda-Parse-and-Play`
 
 All notable changes to this project will be documented in this file.
 
