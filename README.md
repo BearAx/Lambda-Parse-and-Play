@@ -23,8 +23,8 @@
 
 ---
 
-## 📌 Table of Contents
-- [What is it?](#-what-is-it-)
+## Table of Contents
+- [What is it?](#what-is-it-)
 - [Key ideas / Why it matters](#-key-ideas--why-it-matters)
 - [Feature Roadmap](#-feature-roadmap)
 - [Usage Guide](#-usage-guide)
