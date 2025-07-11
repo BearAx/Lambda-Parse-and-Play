@@ -4,7 +4,9 @@
 
 Semester — **[Sum25] Programming in Haskell**  
 ## Authors 
-<td align="center">
+<table>
+  <tr>
+    <td align="center">
       <a href="https://github.com/BearAx">
         <img src="https://github.com/BearAx.png" width="80" height="80" style="border-radius: 50%;" /><br />
         <sub><b>Aleksandr Medvedev</b></sub>
@@ -16,6 +18,8 @@ Semester — **[Sum25] Programming in Haskell**
         <sub><b>Nikita Shankin</b></sub>
       </a>
     </td>
+  </tr>
+</table>
 
 ---
 
