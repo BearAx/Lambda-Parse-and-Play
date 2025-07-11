@@ -40,6 +40,17 @@ monad transformers, only `parsec` + `containers`).
 
 ---
 
+## 📌 Table of Contents
+- [About the Project](#-about-the-project)
+- [Key ideas / Why it mattersdt](#-key-ideas---why-it-matters)
+- [Feature Roadmap](#-feature-roadmap)
+- [Usage Guide](#-usage-guide)
+- [Key ideas / Why it mattersdt](#-key-ideas---why-it-matters)
+- [CHANGELOG.md](CHANGELOG.md) -- not configured yet
+- [LICENSE](LICENSE)
+
+---
+
 ## Key ideas / Why it matters
 
 | 💡 Idea | Why it matters |
