@@ -28,10 +28,15 @@ monad transformers, only `parsec` + `containers`).
 
 | 💡 Idea | Why it matters |
 |---------|-----------------|
-| **Symmetric parser ↔ pretty-printer** | <br>⇢ любой вывод REPL можно скормить обратно без изменений; помогает отладке и автотестам |
-| **Currying via `VPrim` + `curry2`** | примитивы (`+`, `&&`) работают как обычные λ-функции: `(+ 3) 5` OK |
-| **Closures with lexical env** | чистый CBV без глобального состояния |
-| **Single-file MVP** | легко читать и демонстрировать на защите |
+| **Symmetric parser ↔ pretty-printer** | <br>⇢ any REPL output can be fed back unchanged; it helps debugging and autotests |
+| **Currying via `VPrim` + `curry2`** | primitives (`+`, `&&`) work like ordinary λ-functions: `(+ 3) 5` OK |
+| **Closures with lexical env** | pure CBV with no global state |
+| **Compositionality** | The parser is just `Parser A`. We assemble grammar like Lego from small blocks of `ident`, `lambdaP`, `exprP` |
+| **Left-hand expression without LALR tables** | `foldl1 App <$> many1 aTermP` implements left associativity in one line; no parser generators are needed (Happy) |
+| **Understandable mistakes** | Parsec stores the position (`line/column`), so if we make a typo, we `get unexpected "+" expecting"("` — easy to debug |
+| **Backtracking with `try`** | For primitives/boolean words, we use `try (string s <* notFollowedBy ...)` — rollback if followed by a letter. It's safe and readable |
+| **Type Safety** | The compiler guarantees that if `exprP :: Parser is Expr`, then the AST is exactly built upon success |
+| **Less code** | 50 lines of Parsec vs. about 150-200 if written manually on `readP`/`State` |
 
 ---
 
