@@ -3,9 +3,16 @@
 *A Minimal Lambda-Calculus Parser with Interactive REPL*  
 
 Semester — **[Sum25] Programming in Haskell**  
-Authors  |  Aleksandr Medvedev [![My GitHub Avatar](https://github.com/BearAx.png)](https://github.com/BearAx)
+## Authors 
 
- · Nikita Shankin  
+<p>
+  <a href="https://github.com/BearAx" target="_blank">
+    <img src="https://github.com/BearAx.png" width="60" height="60" style="border-radius: 50%;" />
+  </a>
+  <a href="https://github.com/Mysteri0K1ng" target="_blank">
+    <img src="https://github.com/Mysteri0K1ng.png" width="60" height="60" style="border-radius: 50%;" />
+  </a>
+</p>
 
 ---
 
