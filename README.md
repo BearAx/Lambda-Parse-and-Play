@@ -7,7 +7,7 @@ Authors  |  Aleksandr Medvedev · Nikita Shankin
 
 ---
 
-## 1 · What is it?
+## What is it?
 
 `λ Parse & Play` is a toy-yet-practical implementation of the **untyped
 lambda calculus** enriched with
@@ -24,7 +24,7 @@ monad transformers, only `parsec` + `containers`).
 
 ---
 
-## 2 · Key ideas / Why it matters
+## Key ideas / Why it matters
 
 | 💡 Idea | Why it matters |
 |---------|-----------------|
@@ -35,7 +35,7 @@ monad transformers, only `parsec` + `containers`).
 
 ---
 
-## 3 · Stage I — done   ✅
+## Stage I — done   ✅
 
 | Component | Status | Notes |
 |-----------|--------|-------|
@@ -50,7 +50,7 @@ monad transformers, only `parsec` + `containers`).
 
 ---
 
-## 4 · Road-map (Stage II & beyond)
+## Road-map (Stage II & beyond)
 
 | 🚀 Planned feature | Adds |
 |-------------------|------|
@@ -61,7 +61,7 @@ monad transformers, only `parsec` + `containers`).
 
 ---
 
-## 5 · Getting started
+## Getting started
 
 ```bash
 # clone & enter
