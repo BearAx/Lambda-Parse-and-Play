@@ -9,7 +9,7 @@
     <td align="center">
       <a href="https://github.com/BearAx">
         <img src="https://github.com/BearAx.png" width="80" height="80" style="border-radius: 50%;" /><br />
-        <sub><b>Aleksandr Medvedev</b></sub>
+        <b>Aleksandr Medvedev</b>
       </a>
     </td>
     <td align="center">
