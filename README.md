@@ -58,15 +58,19 @@ lambda calculus** enriched with
 
 | 💡 Idea | Why it matters |
 |---------|-----------------|
-| **Symmetric parser ↔ pretty-printer** | <br>⇢ any REPL output can be fed back unchanged; it helps debugging and autotests |
+| **Symmetric parser ↔ pretty-printer** | <br>⇢ Ensures `parseExpr . pretty ≡ Right` - any REPL output can be re-parsed without modification, enabling reliable testing and debugging. |
 | **Currying via `VPrim` + `curry2`** | primitives (`+`, `&&`) work like ordinary λ-functions: `(+ 3) 5` OK |
-| **Closures with lexical env** | pure CBV with no global state |
-| **Compositionality** | The parser is just `Parser A`. We assemble grammar like Lego from small blocks of `ident`, `lambdaP`, `exprP` |
-| **Left-hand expression without LALR tables** | `foldl1 App <$> many1 aTermP` implements left associativity in one line; no parser generators are needed (Happy) |
-| **Understandable mistakes** | Parsec stores the position (`line/column`), so if we make a typo, we `get unexpected "+" expecting"("` — easy to debug |
-| **Backtracking with `try`** | For primitives/boolean words, we use `try (string s <* notFollowedBy ...)` — rollback if followed by a letter. It's safe and readable |
-| **Type Safety** | The compiler guarantees that if `exprP :: Parser is Expr`, then the AST is exactly built upon success |
-| **Less code** | 50 lines of Parsec vs. about 150-200 if written manually on `readP`/`State` |
+| **Lexical closures with environment** | Functions capture their definition scope (`VClos`), enabling proper scoping and recursion. |
+| **Step-by-step β-trace** |`:trace` visualizes evaluation steps (β-reduction, δ-reduction), ideal for learning lambda calculus mechanics. |
+| **Parser combinators (Parsec)** | Modular grammar construction (e.g., `ident`, `lambdaP`, `exprP`) avoids parser generators (Happy). |
+| **Left-associative application** | `foldl1 App <$> many1 atomP` implements left-associative function application in one line. |
+| **Error handling with diagnostics** | Parsec tracks positions (`line/column`) for precise errors (e.g., `unexpected "+" expecting "(")`. |
+| **Backtracking with `try`** | Safe parsing of reserved words (`true`, `let`) using `try (string s <* notFollowedByIdChar)`. |
+| **Type-safe AST** | Haskell’s type system guarantees valid AST construction (e.g., `parseExpr` returns `Expr` on success). |
+| **REPL interactivity** | Commands like `:trace`, `:pretty`, `:load` turn it into a hands-on playground for lambda calculus. |
+| **Substitution-based β-reduction** | `subst` safely replaces variables in lambda bodies, avoiding variable capture. |
+| **Primitive δ-reduction** | Built-in ops (e.g., `(+ 3 4) → 7`) integrate seamlessly with λ-calculus evaluation. |
+| **Minimal footprint** | Entire interpreter fits in ~300 lines of idiomatic Haskell (only `parsec` + `containers` dependencies). |
 
 ---
 
