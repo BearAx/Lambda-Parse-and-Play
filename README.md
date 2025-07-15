@@ -81,14 +81,27 @@ monad transformers, only `parsec` + `containers`).
 
 ---
 
-## Road-map (Stage II & beyond)
+## Stage II — done   ✅
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| AST extensions  | **✔** | Added `Let`, `If` nodes |
+| `let..in`  | **✔** | Supports variable scoping: `let x = e1 in e2` |
+| Conditionals | **✔** | `if c then t else f` with boolean guards |
+| ASCII β-reduction trace | **✔** | Step-by-step reduction with `:trace` command |
+| Module system / file loader |  **✔** | run larger examples with `:load` command |
+| REPL commands |  **✔** | `:quit`, `:env`, `:load`, `:trace`, `:pretty`, error handling |
+
+---
+
+## Road-map (Stage III & beyond)
 
 | 🚀 Planned feature | Adds |
 |-------------------|------|
-| `let` / `letrec`  | syntactic sugar, easy desugaring to λ |
-| ASCII β-reduction trace | step-by-step animation in REPL |
-| Module system / file loader | run larger examples |
-| Benchmarks vs naïve evaluator | showcase optimisations (CSE / inlining) |
+| Recursive `letrec`  | Support self-referential bindings (e.g., factorial) |
+| Module system | Import/Export definitions across files |
+| Optimizations | Common subexpression elimination, let-floating |
+| Benchmark suite | Compare performance vs naive evaluators |
 
 ---
 
