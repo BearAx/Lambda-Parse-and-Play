@@ -23,7 +23,7 @@
     <td align="center">
       Contribution: AST, let constructions, ASCII β-reduction trace, File loader
     </td>
-    <td align="center">
+    <td align="left">
       Contribution: Pretty-printer, Conditionals, Evaluations, REPL commands
     </td>
   </tr>
