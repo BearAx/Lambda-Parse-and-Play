@@ -18,9 +18,9 @@
         <img src="https://github.com/Mysteri0K1ng.png" width="80" height="80" style="border-radius: 50%;" /><br />
         <sub><b>Nikita Shankin</b></sub>
       </a>
-       <b>Pretty-printer, Conditionals, REPL commands</b>
     </td>
   </tr>
+  <b>Pretty-printer, Conditionals, REPL commands</b>
 </table>
 
 ---
