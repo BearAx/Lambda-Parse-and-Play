@@ -22,11 +22,11 @@
   <tr>
     <td align="left">
       Contribution: 
-      AST, let constructions, ASCII β-reduction trace, File loader
+      - AST, let constructions, ASCII β-reduction trace, File loader
     </td>
     <td align="left">
       Contribution: 
-      Pretty-printer, Conditionals, Evaluations, REPL commands
+      - Pretty-printer, Conditionals, Evaluations, REPL commands
     </td>
   </tr>
 </table>
