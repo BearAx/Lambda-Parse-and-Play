@@ -21,10 +21,10 @@
   </tr>
   <tr>
     <td align="center">
-      Вклад: Backend, API
+      Contribution: AST, let..in constructions, ASCII β-reduction trace, File loader
     </td>
     <td align="center">
-      Вклад: Frontend, UI/UX
+      Contribution: Pretty-printer, Conditionals, Evaluations, REPL commands
     </td>
   </tr>
 </table>
