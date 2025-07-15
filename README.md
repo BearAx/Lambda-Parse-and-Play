@@ -20,7 +20,7 @@
     </td>
   </tr>
   <tr>
-    <td align="center">
+    <td align="left">
       Contribution: AST, let constructions, ASCII β-reduction trace, File loader
     </td>
     <td align="left">
