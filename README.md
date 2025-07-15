@@ -26,9 +26,8 @@
 ## Table of Contents
 - [What is it?](#what-is-it)
 - [Key ideas / Why it matters](#key-ideas--why-it-matters)
-- [Stage I](#stage-i--done---)
-- [Stage II](#stage-ii--done---)
-- [Road-map](#road-map-stage-iii--beyond)
+- [Stage II](#what-is-done-)
+- [Road-map](#road-map)
 - [Getting started](#getting-started)
 - [CHANGELOG.md](CHANGELOG.md) -- not configured yet
 - [LICENSE](LICENSE)
@@ -74,35 +73,24 @@ lambda calculus** enriched with
 
 ---
 
-## Stage I — done   ✅
+## What is done ✅
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| AST (`Var/Lam/App/Lit/Prim`) | **✔** | minimal core |
+| AST | **✔** | (`Var/Lam/App/Lit/Prim/let/if`) |
 | Parsec parser | **✔** | left-assoc application, literals, λ |
-| Pretty-printer | **✔** | round-trip property holds |
-| CBV evaluator | **✔** | closures, primitive env |
-| REPL + commands | **✔** | `:quit`, `:env`, error handling |
-| Sample script | **✔** | `(+ 4 5)` prints `9` on start |
+| `let..in`  | **✔** | Supports variable scoping: `let x = e1 in e2` |
+| Conditionals | **✔** | `if c then t else f` with boolean guards |
+| Pretty-printer | **✔** | See clear output with `:pretty` command |
+| ASCII β-reduction trace | **✔** | Step-by-step reduction with `:trace` command |
+| Module system / file loader |  **✔** | run larger examples with `:load` command |
+| REPL commands |  **✔** | `:quit`, `:env`, `:load`, `:trace`, `:pretty`, error handling |
+| Sample demo |  **✔** | demo tests all interpreter features |
 | `-Wall` clean build | **✔** | no warnings after default-type fix |
 
 ---
 
-## Stage II — done   ✅
-
-| Component | Status | Notes |
-|-----------|--------|-------|
-| AST extensions  | **✔** | Added `Let`, `If` nodes |
-| `let..in`  | **✔** | Supports variable scoping: `let x = e1 in e2` |
-| Conditionals | **✔** | `if c then t else f` with boolean guards |
-| ASCII β-reduction trace | **✔** | Step-by-step reduction with `:trace` command |
-| Module system / file loader |  **✔** | run larger examples with `:load` command |
-| REPL commands |  **✔** | `:quit`, `:env`, `:load`, `:trace`, `:pretty`, error handling |
-| Sample demo |  **✔** | `let dbl = \x. (* x 2) in dbl (+ 3 4)` evaluates to `14` |
-
----
-
-## Road-map (Stage III & beyond)
+## Road-map
 
 | 🚀 Planned feature | Adds |
 |-------------------|------|
