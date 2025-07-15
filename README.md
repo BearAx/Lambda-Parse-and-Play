@@ -4,6 +4,7 @@
 
 **[Sum25] Programming in Haskell**  
 ## Authors
+<table>
   <tr>
     <td align="center">
       <a href="https://github.com/BearAx">
@@ -18,7 +19,7 @@
       </a>
     </td>
   </tr>
-
+</table>
 ---
 
 ## Table of Contents
