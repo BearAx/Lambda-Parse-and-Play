@@ -41,7 +41,7 @@
 lambda calculus** enriched with
 
 * extended syntax:
-  * Integer (`42`) and boolean literals (`true`, `false`)
+  * Integer (`52`) and boolean literals (`true`, `false`)
   * Primitive operations: `+ - * = && ||`
   * Syntactic sugar: `let/in` bindings, `if/then/else` 
 * Core features :   
