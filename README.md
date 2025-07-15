@@ -40,16 +40,18 @@
 `λ Parse & Play` is a toy-yet-practical implementation of the **untyped
 lambda calculus** enriched with
 
-* integer / boolean literals and six primitive operators  
-  `+  -  *  =  &&  ||`
-* a **Parsec** grammar that can *round-trip* with its pretty-printer  
-  (`parseExpr . pretty ≡ Right`)
-* a tiny **call-by-value interpreter** (closures + primitive ops)
-* an ASCII **REPL** (`:quit`, `:env`) for live experimentation
-
-The entire Stage I fits in **~240 lines** of plain Haskell (no TH, no
-monad transformers, only `parsec` + `containers`).
-
+* extended syntax:
+  * Integer (`42`) and boolean literals (`true`, `false`)
+  * Primitive operations: `+ - * = && ||`
+  * Syntactic sugar: `let/in` bindings, `if/then/else` 
+* Core features :   
+  * Parsec-based parser  with round-trip property (`parseExpr . pretty ≡ Right`)  
+  * Call-by-value evaluator  with closures and primitive operations
+  * Interactive REPL  supporting commands: `:quit`, `:trace`, `:pretty`, `:load`
+  * Step-by-step β-reduction tracing  for debugging evaluation
+* Minimal footprint :
+  * Entire implementation fits in ~300 lines  of clean Haskell (uses only `parsec` and `containers`)
+    
 ---
 
 ## Key ideas / Why it matters
