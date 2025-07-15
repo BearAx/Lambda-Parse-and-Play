@@ -96,7 +96,7 @@ monad transformers, only `parsec` + `containers`).
 
 ```bash
 # clone & enter
-git clone https://github.com/<YourOrg>/Lambda-Parse-and-Play.git
+git clone https://github.com/BearAx/Lambda-Parse-and-Play.git
 cd Lambda-Parse-and-Play
 
 # build (Stack)
