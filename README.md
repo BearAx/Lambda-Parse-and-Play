@@ -3,8 +3,7 @@
 *A Lambda-Calculus Playground: CBV Evaluation, Let Bindings & REPL*
 
 **[Sum25] Programming in Haskell**  
-## Authors 
-<table>
+## Authors
   <tr>
     <td align="center">
       <a href="https://github.com/BearAx">
@@ -19,7 +18,6 @@
       </a>
     </td>
   </tr>
-</table>
 
 ---
 
