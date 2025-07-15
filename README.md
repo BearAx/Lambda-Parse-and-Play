@@ -1,6 +1,6 @@
 
 # λ Parse & Play
-*A Minimal Lambda-Calculus Parser with Interactive REPL*  
+*A Lambda-Calculus Playground: CBV Evaluation, Let Bindings & REPL*
 
 **[Sum25] Programming in Haskell**  
 ## Authors 
