@@ -19,8 +19,8 @@
         <sub><b>Nikita Shankin</b></sub>
       </a>
     </td>
+    <b>Pretty-printer, Conditionals, REPL commands</b>
   </tr>
-  <b>Pretty-printer, Conditionals, REPL commands</b>
 </table>
 
 ---
