@@ -15,7 +15,7 @@
     <td align="center">
       <a href="https://github.com/Mysteri0K1ng">
         <img src="https://github.com/Mysteri0K1ng.png" width="80" height="80" style="border-radius: 50%;" /><br />
-        <sub><b>Nikita Shankin</b></sub>
+        <b>Nikita Shankin</b>
       </a>
     </td>
   </tr>
