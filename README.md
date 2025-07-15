@@ -19,6 +19,14 @@
       </a>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      Вклад: Backend, API
+    </td>
+    <td align="center">
+      Вклад: Frontend, UI/UX
+    </td>
+  </tr>
 </table>
 
 ---
