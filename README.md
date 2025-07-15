@@ -98,6 +98,7 @@ lambda calculus** enriched with
 | ASCII β-reduction trace | **✔** | Step-by-step reduction with `:trace` command |
 | Module system / file loader |  **✔** | run larger examples with `:load` command |
 | REPL commands |  **✔** | `:quit`, `:env`, `:load`, `:trace`, `:pretty`, error handling |
+| Sample demo |  **✔** | `let dbl = \x. (* x 2) in dbl (+ 3 4)` evaluates to `14` |
 
 ---
 
