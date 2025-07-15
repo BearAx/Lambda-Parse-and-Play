@@ -27,7 +27,8 @@
 - [What is it?](#what-is-it)
 - [Key ideas / Why it matters](#key-ideas--why-it-matters)
 - [Stage I](#stage-i--done---)
-- [Road-map](#road-map-stage-ii--beyond)
+- [Stage II](#stage-ii--done---)
+- [Road-map](#road-map-stage-iii--beyond)
 - [Getting started](#getting-started)
 - [CHANGELOG.md](CHANGELOG.md) -- not configured yet
 - [LICENSE](LICENSE)
