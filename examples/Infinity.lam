@@ -1,0 +1,1 @@
+letrec loop = \x. loop x in loop 0
