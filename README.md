@@ -54,7 +54,7 @@ lambda calculus** enriched with
 * Core features :   
   * Parsec-based parser with round-trip property (`parseExpr . pretty ≡ Right`)  
   * Call-by-value evaluator with closures and primitive operations
-  * Interactive REPL supporting commands: `:quit`, `:trace`, `:pretty`, `:load (..-trace,.-pretty)`
+  * Interactive REPL supporting commands: `:quit`, `:trace`, `:pretty`, `:load (-trace,-pretty)`
   * Step-by-step β-reduction tracing for debugging evaluation
 * Minimal footprint :
   * Entire implementation fits in ~300 lines of clean Haskell (uses only `parsec` and `containers`)
@@ -72,9 +72,9 @@ lambda calculus** enriched with
 | **Parser combinators (Parsec)** | Modular grammar construction (e.g., `ident`, `lambdaP`, `exprP`) avoids parser generators (Happy). |
 | **Left-associative application** | `foldl1 App <$> many1 atomP` implements left-associative function application in one line. |
 | **Error handling with diagnostics** | Parsec tracks positions (`line/column`) for precise errors (e.g., `unexpected "+" expecting "(")`. |
-| **Backtracking with `try`** | Safe parsing of reserved words (`true`, `let`) using `try (string s <* notFollowedByIdChar)`. |
+| **Backtracking with `try`** | Safe parsing of reserved words (`true`, `let`, `letrec`) using `try (string s <* notFollowedByIdChar)`. |
 | **Type-safe AST** | Haskell’s type system guarantees valid AST construction (e.g., `parseExpr` returns `Expr` on success). |
-| **REPL interactivity** | Commands like `:trace`, `:pretty`, `:load` turn it into a hands-on playground for lambda calculus. |
+| **REPL interactivity** | Commands like `:trace`, `:pretty`, `:load (-trace,-pretty)` turn it into a hands-on playground for lambda calculus. |
 | **Substitution-based β-reduction** | `subst` safely replaces variables in lambda bodies, avoiding variable capture. |
 | **Primitive δ-reduction** | Built-in ops (e.g., `(+ 3 4) → 7`) integrate seamlessly with λ-calculus evaluation. |
 | **Minimal footprint** | Entire interpreter fits in ~300 lines of idiomatic Haskell (only `parsec` + `containers` dependencies). |
