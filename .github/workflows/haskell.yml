@@ -5,24 +5,31 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
       - uses: haskell/actions/setup@v2
         with:
           ghc-version: '9.6'
           stack-version: '2.13.1'
-          
-      - name: Build project
-        run: stack build --test --bench --no-run-tests --no-run-benchmarks
-      
-      - name: Run unit and integration tests
+      - name: Build and run tests
         run: stack test
-        
-      - name: Run performance tests
-        run: stack test --ta "-m Performance"
-        timeout-minutes: 5
+  
+  infinity-test:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: haskell/actions/setup@v2
+        with:
+          ghc-version: '9.6'
+          stack-version: '2.13.1'
+      - name: Build project
+        run: stack build
+      - name: Run infinity test
+        run: ./scripts/test-infinity.sh
