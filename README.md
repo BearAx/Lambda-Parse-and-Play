@@ -50,14 +50,14 @@ lambda calculus** enriched with
 * extended syntax:
   * Integer (`52`) and boolean literals (`true`, `false`)
   * Primitive operations: `+ - * = && ||`
-  * Syntactic sugar: `let/in` bindings, `if/then/else` 
+  * Syntactic sugar: `let/in/letrec` bindings, `if/then/else` 
 * Core features :   
-  * Parsec-based parser  with round-trip property (`parseExpr . pretty ≡ Right`)  
-  * Call-by-value evaluator  with closures and primitive operations
-  * Interactive REPL  supporting commands: `:quit`, `:trace`, `:pretty`, `:load`
-  * Step-by-step β-reduction tracing  for debugging evaluation
+  * Parsec-based parser with round-trip property (`parseExpr . pretty ≡ Right`)  
+  * Call-by-value evaluator with closures and primitive operations
+  * Interactive REPL supporting commands: `:quit`, `:trace`, `:pretty`, `:load (..-trace,.-pretty)`
+  * Step-by-step β-reduction tracing for debugging evaluation
 * Minimal footprint :
-  * Entire implementation fits in ~300 lines  of clean Haskell (uses only `parsec` and `containers`)
+  * Entire implementation fits in ~300 lines of clean Haskell (uses only `parsec` and `containers`)
     
 ---
 
