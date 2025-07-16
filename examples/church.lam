@@ -1,0 +1,8 @@
+succ = \n. \f. \z. f (n f z)
+add = \m. \n. \f. \z. m f (n f z)
+mul = \m. \n. \f. m (n f)
+
+two = succ (succ zero)
+three = succ two
+
+mul two three
