@@ -85,9 +85,10 @@ lambda calculus** enriched with
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| AST | **✔** | (`Var/Lam/App/Lit/Prim/let/if`) |
+| AST | **✔** | (`Var/Lam/App/Lit/Prim/let/letrec/if`) |
 | Parsec parser | **✔** | left-assoc application, literals, λ |
 | `let..in`  | **✔** | Supports variable scoping: `let x = e1 in e2` |
+| Recursive `letrec`  | Support self-referential bindings (e.g., factorial) |
 | Conditionals | **✔** | `if c then t else f` with boolean guards |
 | Pretty-printer | **✔** | See clear output with `:pretty` command |
 | ASCII β-reduction trace | **✔** | Step-by-step reduction with `:trace` command |
@@ -102,7 +103,6 @@ lambda calculus** enriched with
 
 | 🚀 Planned feature | Adds |
 |-------------------|------|
-| Recursive `letrec`  | Support self-referential bindings (e.g., factorial) |
 | Module system | Import/Export definitions across files |
 | Optimizations | Common subexpression elimination, let-floating |
 | Benchmark suite | Compare performance vs naive evaluators |
