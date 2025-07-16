@@ -1,0 +1,6 @@
+true = \t. \f. t
+false = \t. \f. f
+
+and = \b. \c. b c false
+
+and true false
