@@ -20,8 +20,9 @@ jobs:
       - name: Build project
         run: stack build --test --bench --no-run-tests --no-run-benchmarks
       
-      - name: Run unit tests
+      - name: Run unit and integration tests
         run: stack test
         
-      - name: Run example integration tests
-        run: ./scripts/test-examples.sh
+      - name: Run performance tests
+        run: stack test --ta "-m Performance"
+        timeout-minutes: 5
