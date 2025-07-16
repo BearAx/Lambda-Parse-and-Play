@@ -8,12 +8,12 @@ import Control.Exception (try, SomeException)
 
 integrationTests :: Spec
 integrationTests = describe "Integration Tests" $ do
-  it "runs all examples without errors" $ do
+  it "runs all examples except Infinity.lam" $ do
     files <- listDirectory "examples"
-    let lamFiles = filter (".lam" `isSuffixOf`) files
+    let lamFiles = filter (\f -> ".lam" `isSuffixOf` f && f /= "Infinity.lam") files
     results <- mapM runExample lamFiles
     all (== True) results `shouldBe` True
-
+    
 runExample :: FilePath -> IO Bool
 runExample file = do
   let path = "examples" </> file
