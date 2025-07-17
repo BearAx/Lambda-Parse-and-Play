@@ -57,7 +57,7 @@ lambda calculus** enriched with
   * Interactive REPL supporting commands: `:quit`, `:trace`, `:pretty`, `:load (-trace,-pretty)`
   * Step-by-step β-reduction tracing for debugging evaluation
 * Minimal footprint :
-  * Entire implementation fits in ~300 lines of clean Haskell (uses only `parsec` and `containers`)
+  * Entire implementation fits in ~400 lines of clean Haskell (uses only `parsec` and `containers`)
     
 ---
 
