@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `letrec` syntax and semantics for recursive bindings (e.g. factorial).
-- Support for infinite recursion detection in `:trace` (1000-step limit with error message).
+- Support for infinite recursion detection in `:trace` (500-step limit with error message).
 - Parser now handles `letrec` and pretty-printer outputs correct syntax.
 - Demo updated to include `letrec` usage with factorial.
 - Full trace demonstration via `:trace` with reduction steps.
