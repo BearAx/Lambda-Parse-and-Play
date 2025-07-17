@@ -5,7 +5,7 @@
 -- * Lambda calculus with integers, booleans, and primitives
 -- * `let/in` bindings
 -- * Pretty-printer (parse . pretty ≡ Right)
--- * REPL with commands :quit, :load (..-trace, ..-pretty), :trace, :pretty
+-- * REPL with commands :quit, :load (-trace, -pretty), :trace, :pretty
 
 module Main (main) where
 
@@ -198,8 +198,7 @@ ifP = do
   _ <- reserved "then"
   t <- exprP
   _ <- reserved "else"
-  f <- exprP
-  pure (If c t f)
+  If c t <$> exprP
 
 letrecP :: Parser Expr
 letrecP = do
@@ -208,8 +207,7 @@ letrecP = do
   _  <- symbol "="
   e1 <- exprP
   _  <- reserved "in"
-  e2 <- exprP
-  pure (LetRec x e1 e2)
+  LetRec x e1 <$> exprP
 
 -- Parses atomic expressions and parenthesized sub-expressions
 atomP :: Parser Expr
@@ -252,20 +250,32 @@ pretty e = case e of
 -- Small-step evaluator with Δ and β rules.
 ------------------------------------------------------------
 -- Substitution function for β-reduction
-subst :: String -> Expr -> Expr -> Expr
-subst x r = go where
-  go (Var y)       | y == x    = r
-                   | otherwise = Var y
-  go (Lam y b)     | y == x    = Lam y b
-                   | otherwise = Lam y (go b)
-  go (App f a)                 = App (go f) (go a)
-  go (Let y e1 e2) | y == x    = Let y (go e1) e2
-                   | otherwise = Let y (go e1) (go e2)
-  go (LetRec y e1 e2) | y == x    = LetRec y (go e1) e2
-                      | otherwise = LetRec y (go e1) (go e2)
-  go (Lit l)                   = Lit l
-  go (Prim p)                  = Prim p
-  go (If c t f)                = If (go c) (go t) (go f)
+subst :: [Char] -> Expr -> Expr -> Expr
+subst x r = go
+  where
+    go (Var y)
+      | y == x    = r                  -- if variable matches x, substitute it with r
+      | otherwise = Var y              -- otherwise, leave it unchanged
+
+    go (Lam y b)
+      | y == x    = Lam y b            -- if lambda binds x, do not substitute inside
+      | otherwise = Lam y (go b)       -- otherwise, recurse into the body
+
+    go (App f a) = App (go f) (go a)   -- substitute in both function and argument
+
+    go (Let y e1 e2)
+      | y == x    = Let y (go e1) e2   -- if let binds x, do not substitute in e2
+      | otherwise = Let y (go e1) (go e2)  -- otherwise, substitute in both e1 and e2
+
+    go (LetRec y e1 e2)
+      | y == x    = LetRec y (go e1) e2  -- if letrec binds x, skip substitution in e2
+      | otherwise = LetRec y (go e1) (go e2)
+
+    go (Lit l) = Lit l                 -- literals do not contain variables, do nothing
+
+    go (Prim p) = Prim p               -- primitives like "+" are not substituted
+
+    go (If c t f) = If (go c) (go t) (go f)  -- substitute in condition, then-branch, and else-branch
 
 
 -- Delta reduction: applies built-in primitives to literal arguments
@@ -282,21 +292,45 @@ delta (App (App (Prim p) (Lit l1)) (Lit l2)) =
 delta _ = Nothing
 
 -- Small-step evaluation (1-step beta/delta reduction)
+-- Tries to apply a delta (primitive) reduction, like (+ 3 4) → 7
 step :: Expr -> Maybe Expr
-step e | Just e' <- delta e          = Just e'                      -- delta step
-step (App (Lam x b) a)              = Just (subst x a b)           -- beta step
-step (App f a)                      = App <$> step f <*> pure a
-                                   <|> App f     <$> step a
-step (Lam x b)                      = Lam x <$> step b
-step (Let x e1 e2)                  = Let x <$> step e1 <*> pure e2
-                                   <|> Just (subst x e1 e2)
-step (If c t f) = If <$> step c <*> pure t <*> pure f
-               <|> case c of
-                    Lit (LBool True)  -> Just t
-                    Lit (LBool False) -> Just f
-                    _                 -> Nothing
-step (LetRec x e1 e2) = Just (subst x (LetRec x e1 e1) e2)
-step _                              = Nothing
+step e | Just e' <- delta e = Just e'
+
+-- Applies beta-reduction: (\x. body) arg → body[x := arg]
+step (App (Lam x b) a) = Just (subst x a b)
+
+-- Attempts to reduce the function part of an application first (left-to-right),
+-- if that fails, tries to reduce the argument.
+step (App f a) =
+    App <$> step f <*> pure a       -- Step in function position
+ <|> App f     <$> step a           -- Or step in argument
+
+-- Reduces the body of a lambda expression (if any step inside it can happen)
+step (Lam x b) = Lam x <$> step b
+
+-- Tries to reduce the bound expression in a let-binding first,
+-- then substitutes it into the body if no further reduction is possible.
+step (Let x e1 e2) =
+    Let x <$> step e1 <*> pure e2   -- Step in the binding (e1)
+ <|> Just (subst x e1 e2)           -- If e1 is a value, substitute into e2
+
+-- Evaluates the condition of an if-expression first.
+-- If the condition is already a boolean literal, selects the correct branch.
+step (If c t f) =
+    If <$> step c <*> pure t <*> pure f    -- Step in the condition
+ <|> case c of
+        Lit (LBool True)  -> Just t        -- if true, take then-branch
+        Lit (LBool False) -> Just f        -- if false, take else-branch
+        _                 -> Nothing       -- cannot decide yet
+
+-- Implements the semantics of letrec:
+-- substitutes the whole letrec binding into its own body to enable recursion
+step (LetRec x e1 e2) =
+    Just (subst x (LetRec x e1 e1) e2)
+
+-- No more steps possible — this expression is in normal form
+step _ = Nothing
+
 
 -- Traces each evaluation step until expression cannot be reduced further
 traceExpr :: Expr -> IO ()
@@ -314,7 +348,7 @@ traceExprWithLimit n e = do
 
 ------------------------------------------------------------------------------------------
 -- 7. REPL
--- Interactive command-line loop with :trace, :pretty, :load (..-trace, ..-pretty)
+-- Interactive command-line loop with :trace, :pretty, :load (-trace, -pretty)
 ------------------------------------------------------------------------------------------
 repl :: Env -> IO ()
 repl env = do
@@ -332,7 +366,6 @@ repl env = do
   -- Normal execution path
   run src = case parseExpr src >>= eval env of
     Left err       -> putStrLn ("Error: " ++ err) >> repl env
-    Right (VLit l) -> putStrLn (pretty (Lit l))   >> repl env
     Right v        -> print v                     >> repl env
 
   -- Tracing intermediate evaluation steps
@@ -355,22 +388,24 @@ demo = do
   putStrLn ">> let dbl = \\x. (* x 2) in dbl (+ 3 4)"
   printResult "let dbl = \\x. (* x 2) in dbl (+ 3 4)"
 
-  putStrLn "\n-- DEMO: trace evaluation (beta and lambda steps)"
+  putStrLn "\n-- DEMO: trace evaluation (beta and delta steps)"
   putStrLn ">> :trace let dbl = \\x. (+ x x) in dbl (+ 1 2)"
   traceExprFrom "let dbl = \\x. (+ x x) in dbl (+ 1 2)"
 
   putStrLn "\n-- DEMO: letrec factorial"
   putStrLn ">> letrec fact = \\n. if (= n 0) then 1 else (* n (fact (- n 1))) in fact 5"
   printResult "letrec fact = \\n. if (= n 0) then 1 else (* n (fact (- n 1))) in fact 5"
-  
+
   putStrLn "\n-- DEMO: pretty-printer"
   putStrLn ">> :pretty (\\x. (+ x x))"
   printPretty "\\x. (+ x x)"
 
   putStrLn "\n-- DEMO: parser error"
+  putStrLn ">> let a = 5 inx 2"
   printResult "let a = 5 inx 2"
 
   putStrLn "\n-- DEMO: unbound variable error"
+  putStrLn ">> sum 5"
   printResult "sum 5"
 
 -- Executes normal evaluation
