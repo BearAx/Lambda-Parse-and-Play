@@ -47,4 +47,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Plans for Stage 3: Add type checker and advanced error reporting.
+- Plans for Stage 3: Add type checker, advanced error reporting, module system, optimizations, benchmark suite.
