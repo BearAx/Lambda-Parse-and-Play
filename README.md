@@ -37,7 +37,7 @@
 - [What is done](#what-is-done-)
 - [Road-map](#road-map)
 - [Getting started](#getting-started)
-- [CHANGELOG.md](CHANGELOG.md) -- not configured yet
+- [CHANGELOG.md](CHANGELOG.md)
 - [LICENSE](LICENSE)
 
 ---
