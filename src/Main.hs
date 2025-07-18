@@ -1,5 +1,7 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# LANGUAGE LambdaCase #-}
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Use optional" #-}
 
 -- Entry point for the Lambda-Calc-and-Play with support for:
 -- * Lambda calculus with integers, booleans, and primitives
@@ -131,7 +133,38 @@ eval env = \case
               Left err  -> error ("letrec error: " ++ err)
     in eval recEnv e2
 
+evalWithLimit :: Int -> Env -> Expr -> Either String Value
+evalWithLimit 0 _ _ = Left "Evaluation stopped: exceeded maximum depth (possible infinite loop)"
+evalWithLimit n env expr = case expr of
+  Var x        -> maybe (Left $ "unbound variable " ++ x) Right (M.lookup x env)
+  Lit l        -> Right (VLit l)
+  Prim p       -> maybe (Left $ "unknown prim " ++ p) Right (lookup p primEnv)
+  Lam x b      -> Right (VClos x b env)
+  App e1 e2    -> do
+    f <- evalWithLimit (n - 1) env e1
+    a <- evalWithLimit (n - 1) env e2
+    applyWithLimit (n - 1) f a
+  Let x e1 e2  -> do
+    v1 <- evalWithLimit (n - 1) env e1
+    evalWithLimit (n - 1) (M.insert x v1 env) e2
+  If c t f     -> do
+    cond <- evalWithLimit (n - 1) env c
+    case cond of
+      VLit (LBool True)  -> evalWithLimit (n - 1) env t
+      VLit (LBool False) -> evalWithLimit (n - 1) env f
+      _ -> Left "if condition must be a boolean"
+  LetRec x e1 e2 ->
+    let recEnv = M.insert x v env
+        v = case evalWithLimit (n - 1) recEnv e1 of
+              Right val -> val
+              Left err  -> error ("letrec error: " ++ err)
+    in evalWithLimit (n - 1) recEnv e2
 
+-- Helper to make apply use limit too
+applyWithLimit :: Int -> Value -> Value -> Either String Value
+applyWithLimit n (VClos x b clo) v = evalWithLimit (n - 1) (M.insert x v clo) b
+applyWithLimit _ (VPrim f)       v = f v
+applyWithLimit _ _ _               = Left "apply: non-function"
 
 ------------------------------------------------------------
 -- 4. Parser (using Parsec)
@@ -364,7 +397,7 @@ repl env = do
       | otherwise                       -> run ln
  where
   -- Normal execution path
-  run src = case parseExpr src >>= eval env of
+  run src = case parseExpr src >>= evalWithLimit 500 env of
     Left err       -> putStrLn ("Error: " ++ err) >> repl env
     Right v        -> print v                     >> repl env
 
@@ -410,7 +443,7 @@ demo = do
 
 -- Executes normal evaluation
 printResult :: String -> IO ()
-printResult src = case parseExpr src >>= eval emptyEnv of
+printResult src = case parseExpr src >>= evalWithLimit 500 emptyEnv of
   Left err       -> putStrLn $ "Error: " ++ err
   Right (VLit l) -> putStrLn $ pretty (Lit l)
   Right v        -> print v
